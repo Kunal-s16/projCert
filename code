@@ -1,0 +1,28 @@
+import static org.testing.Assert.assertEquals;
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Webdriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.Test;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+public class classApp{
+	public static void main(String[] args){
+		
+		System.setProperty("webdriver.chrome.driver","/home/edureka/chromedriver");
+		ChromeOptions chromeOptions = new ChromeOptions();
+		chromeOptions.addArguments("--headless");
+		chromeOptions.addArguments("--no-sandbox");
+		WebDriver driver = new ChromeDriver(chromeOptions);
+		
+		driver.get("http://54.215.89.77:8081");
+		
+		driver.manage().timeouts().implicitlywait(3, TimeUnit.SECONDS);
+		driver.findElement(By.id("About US")).click();
+		
+		String test = driver.findElement(By.id("PID.ab2.pg")).getText();
+		assertEquals(test, " **text from about text** ")
+		System.out.println("Test Succeeded!!");
+		driver.quit();
+	}
+}
