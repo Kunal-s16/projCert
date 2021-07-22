@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 public class TestCase1 {
 	
@@ -14,7 +15,10 @@ public class TestCase1 {
 	{
 		// Start chrome browser
 		System.setProperty("webdriver.chrome.driver","/home/edureka/chromedriver");
-		WebDriver driver= new ChromeDriver();
+		ChromeOptions chromeOptions = new ChromeOptions();
+		chromeOptions.addArguments("--headless");
+		chromeOptions.addArguments("--no-sandbox");
+		WebDriver driver= new ChromeDriver(chromeOptions);
 		
 		driver.manage().window().maximize();
 		
